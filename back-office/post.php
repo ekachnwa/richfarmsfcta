@@ -72,11 +72,8 @@ if (isset($_POST['submit'])) {
         <div class="col-xl-6 col-lg-8 offset-xl-3 pl-30 pl-md-15 pl-xs-15">
           <ul class="item-flex">
             <li>
-              <i class="fas fa-map-marker-alt"></i> 2 Pittsburgh str, Wuse 2,
-              FCT Abuja
-            </li>
-            <li>
-              <a href="tel:+2348149646850"><i class="fas fa-phone-alt"></i> +2348149646850</a>
+              <i class="fas fa-map-marker-alt"></i> Dir. of Agric. Building
+              Complex, Gwagwalada Area Council Secretariat, FCT.
             </li>
           </ul>
         </div>
