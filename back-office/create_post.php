@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $sql = "INSERT INTO post (title, content) VALUES (?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('ss', $title, $content);
-        
+
         if ($stmt->execute()) {
             $postid = $stmt->insert_id; // Get the ID of the newly inserted post
 
@@ -48,10 +48,10 @@ if (isset($_POST['submit'])) {
                             $stmtImage->bind_param('is', $postid, $imageName);
                             $stmtImage->execute();
                         } else {
-                            $msg = "<div class='text-danger'>Error uploading image: " . $_FILES['images']['name'][$i]."</div>";
+                            $msg = "<div class='text-danger'>Error uploading image: " . $_FILES['images']['name'][$i] . "</div>";
                         }
                     } else {
-                        $msg = "<div class='text-danger'>Invalid file type: " . $_FILES['images']['name'][$i]."</div>";
+                        $msg = "<div class='text-danger'>Invalid file type: " . $_FILES['images']['name'][$i] . "</div>";
                     }
                 }
             }
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
         } else {
             $msg = "Error: " . $stmt->error;
         }
-        
+
         $stmt->close();
     } else {
         $msg = "<div class='text-danger'> Title and content cannot be empty.</div>";
@@ -111,6 +111,7 @@ if (isset($_POST['submit'])) {
             flex-wrap: wrap;
             gap: 10px;
         }
+
         .image-preview img {
             width: 100px;
             height: 100px;
@@ -118,6 +119,7 @@ if (isset($_POST['submit'])) {
             border: 1px solid #ddd;
             padding: 5px;
         }
+
         .image-preview img:hover {
             border-color: #666;
         }
@@ -142,11 +144,8 @@ if (isset($_POST['submit'])) {
                 <div class="col-xl-6 col-lg-8 offset-xl-3 pl-30 pl-md-15 pl-xs-15">
                     <ul class="item-flex">
                         <li>
-                            <i class="fas fa-map-marker-alt"></i> 2 Pittsburgh str, Wuse 2,
-                            FCT Abuja
-                        </li>
-                        <li>
-                            <a href="tel:+2348149646850"><i class="fas fa-phone-alt"></i> +2348149646850</a>
+                            <i class="fas fa-map-marker-alt"></i> Dir. of Agric. Building
+                            Complex, Gwagwalada Area Council Secretariat, FCT.
                         </li>
                     </ul>
                 </div>
@@ -266,16 +265,16 @@ if (isset($_POST['submit'])) {
                 <div class="col-tact-stye-one col-lg-12 mb-md-50">
                     <h5 class="sub-title">CREATE POST</h5>
                     <div class="contact-form-style-one">
-                        
-                   
+
+
                         <!-- Form to Create Post with Multiple Images -->
                         <form action="" method="POST" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label for="title" class="text-primary pull-left">Title:</label>
-                                <input type="text" class="form-control" name="title" id="title" required>   
+                                <input type="text" class="form-control" name="title" id="title" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="content" class="text-primary pull-left">Content:</label>
                                 <textarea name="content" class="form-control" id="content" required></textarea>
@@ -283,7 +282,7 @@ if (isset($_POST['submit'])) {
 
                             <div class="from-group">
                                 <label for="images" class="text-primary pull-left">Post Images:</label>
-                                <input type="file" class="form-control"  name="images[]" id="images" multiple> 
+                                <input type="file" class="form-control" name="images[]" id="images" multiple>
                             </div>
                             <div id="preview" class="image-preview"></div>
 

@@ -34,25 +34,25 @@ if (isset($_POST['submit'])) {
 
             if (isset($_FILES['images']) && $_FILES['images']['name'] > 0) {
                 //for ($i = 0; $i < $_FILES['images']['name']; $i++) {
-                    $imageName = basename($_FILES['images']['name']);
-                    $targetFilePath = $targetDir . $imageName;
-                    $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+                $imageName = basename($_FILES['images']['name']);
+                $targetFilePath = $targetDir . $imageName;
+                $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
 
-                    // Check if the file is a valid image type
-                    if (in_array($imageFileType, $allowedFileTypes)) {
-                        // Move the file to the target directory
-                        if (move_uploaded_file($_FILES['images']['tmp_name'], $targetFilePath)) {
-                            // Insert the image path into a separate table
-                            $sqlImage = "INSERT INTO post_images (postid, image_path) VALUES (?, ?)";
-                            $stmtImage = $conn->prepare($sqlImage);
-                            $stmtImage->bind_param('is', $id, $imageName);
-                            $stmtImage->execute();
-                        } else {
-                            $msg = "<div class='text-danger'>Error uploading image: " . $_FILES['images']['name'] . "</div>";
-                        }
+                // Check if the file is a valid image type
+                if (in_array($imageFileType, $allowedFileTypes)) {
+                    // Move the file to the target directory
+                    if (move_uploaded_file($_FILES['images']['tmp_name'], $targetFilePath)) {
+                        // Insert the image path into a separate table
+                        $sqlImage = "INSERT INTO post_images (postid, image_path) VALUES (?, ?)";
+                        $stmtImage = $conn->prepare($sqlImage);
+                        $stmtImage->bind_param('is', $id, $imageName);
+                        $stmtImage->execute();
                     } else {
-                        $msg = "<div class='text-danger'>Invalid file type: " . $_FILES['images']['name'] . "</div>";
+                        $msg = "<div class='text-danger'>Error uploading image: " . $_FILES['images']['name'] . "</div>";
                     }
+                } else {
+                    $msg = "<div class='text-danger'>Invalid file type: " . $_FILES['images']['name'] . "</div>";
+                }
                 //}
             }
 
@@ -144,11 +144,8 @@ if (isset($_POST['submit'])) {
                 <div class="col-xl-6 col-lg-8 offset-xl-3 pl-30 pl-md-15 pl-xs-15">
                     <ul class="item-flex">
                         <li>
-                            <i class="fas fa-map-marker-alt"></i> 2 Pittsburgh str, Wuse 2,
-                            FCT Abuja
-                        </li>
-                        <li>
-                            <a href="tel:+2348149646850"><i class="fas fa-phone-alt"></i> +2348149646850</a>
+                            <i class="fas fa-map-marker-alt"></i> Dir. of Agric. Building
+                            Complex, Gwagwalada Area Council Secretariat, FCT.
                         </li>
                     </ul>
                 </div>
@@ -280,7 +277,7 @@ if (isset($_POST['submit'])) {
                             <div class="form-group">
                                 <label for="fullname" class="text-primary pull-left">Full Name:</label>
                                 <input type="text" class="form-control" name="fullname" id="fullname" required>
-                            </div>                            
+                            </div>
 
                             <div class="from-group">
                                 <label for="images" class="text-primary pull-left">Post Images:</label>
